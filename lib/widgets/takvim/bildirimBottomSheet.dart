@@ -73,7 +73,6 @@ bildirimGonderilsimMi(BuildContext context, WidgetRef ref, DateTime newDateTime,
                         'Would you like to receive notifications ?',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: MediaQuery.of(context).size.height / 35,
                             fontWeight: FontWeight.bold),
                       ),
                     ],
