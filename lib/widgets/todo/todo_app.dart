@@ -75,7 +75,7 @@ class TodoAppleState extends ConsumerState {
                               onDismissed: (_) {
                                 ref
                                     .read(todoListProvider.notifier)
-                                    .remove(allTodos[i].id, i);
+                                    .remove(allTodos[i].id, i,allTodos[i].dateTime);
                               },
                               child: TodoListItemWidget(
                                 item: allTodos[i],

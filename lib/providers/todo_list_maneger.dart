@@ -1,6 +1,8 @@
+import 'package:calendar_agenda/calendar_agenda.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:login/VTislemleri/VTislemleri.dart';
 import 'package:login/models/todo_model.dart';
+import 'package:login/providers/all_provider.dart';
 import 'package:uuid/uuid.dart';
 
 class TodoListManeger extends StateNotifier<List<TodoModel>> {
@@ -8,6 +10,7 @@ class TodoListManeger extends StateNotifier<List<TodoModel>> {
 
   Future<void> adTodo(
       String description, DateTime dateTime, String timeOfDay) async {
+    cleanderListe.add(dateTime.toString().split(" ").first);
     TodoModel eklenecekTodo = TodoModel(
         id: const Uuid().v4(),
         description: description,
@@ -15,6 +18,7 @@ class TodoListManeger extends StateNotifier<List<TodoModel>> {
         timeOfDay: timeOfDay);
     state = [...state, eklenecekTodo];
     await vtEkle(eklenecekTodo);
+    
   }
 
   Future<void> ilkYerestir() async {
@@ -57,11 +61,15 @@ class TodoListManeger extends StateNotifier<List<TodoModel>> {
     ];
   }
 
-  Future<void> remove(String id, int index) async {
+  Future<void> remove(String id, int index,DateTime dateTime) async {
     for (var deger in state) if (deger.id == id) await vtSil(index);
     state = [
       for (var deger in state)
         if (deger.id != id) deger
     ];
+
+    cleanderListe.remove(dateTime.toString().split(" ").first);
   }
+      
+
 }

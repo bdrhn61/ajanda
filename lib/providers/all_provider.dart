@@ -7,6 +7,10 @@ import 'package:uuid/uuid.dart';
 
 
 
+
+
+List<String> cleanderListe=[];
+
 final todoListProvider =
     StateNotifierProvider<TodoListManeger, List<TodoModel>>(
   (ref) {
